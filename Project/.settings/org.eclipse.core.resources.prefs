@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//WebContent/login.jsp=UTF-8
+encoding//src/config/SecurityConfig.java=UTF-8
+encoding//src/servlet/LogFilter.java=UTF-8
+encoding//src/servlet/LoginServlet.java=UTF-8
+encoding//src/utils/DataDAO.java=UTF-8
+encoding//src/utils/SecurityUtils.java=UTF-8
+encoding/<project>=UTF-8

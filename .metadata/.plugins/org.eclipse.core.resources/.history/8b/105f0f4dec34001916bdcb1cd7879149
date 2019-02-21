@@ -1,0 +1,86 @@
+package utils;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import bean.Examfile;
+public class ExamfileDAO {
+	 public static List<Examfile> queryExamfile(Connection conn) throws SQLException {
+	        String sql = "Select a.id ,a.idUser,a.idKyKhamBenh,a.day ,a.Descrip,a.Conclude,a.Status from hoso a ";
+	 
+	        PreparedStatement pstm = conn.prepareStatement(sql);
+	        int id=0;
+	        ResultSet rs = pstm.executeQuery();
+	        List<Examfile> list = new ArrayList<Examfile>();
+	        while (rs.next()) {
+	        	id++;
+	            int userId = rs.getInt("idUser");
+//	            String name = rs.getString("Name");
+	            String date = rs.getString("day");
+	            int idKyKham = rs.getInt("idKyKhamBenh");
+	            int status = rs.getInt("Status");
+	            System.out.println(id+status);
+	            Examfile exam = new Examfile();
+	            exam.setId(id);
+	            exam.setUserId(userId);
+//	            exam.setUserName(name);
+	            exam.setDate(date);
+                exam.setExamId(idKyKham);
+	            exam.setStatus(status);
+	            list.add(exam);
+	        }
+	        return list;
+	    }
+//	 public static Examination findExamination(Connection conn, String id) throws SQLException {
+//	        String sql = "Select a.Id, a.Name, a.Status from khoa a where a.Id=?";
+//	 
+//	        PreparedStatement pstm = conn.prepareStatement(sql);
+//	        pstm.setString(1, id);
+//	 
+//	        ResultSet rs = pstm.executeQuery();
+//	 
+//	        while (rs.next()) {
+//	            String name = rs.getString("Name");
+//	            String status = rs.getString("Status");
+//	            Examination department = new Examination(id, name, status);
+//	            return department;
+//	        }
+//	        return null;
+//	    }
+//	 
+//	    public static void updateDepartment(Connection conn, Examination department) throws SQLException {
+//	        String sql = "Update khoa set Name =?, Status=? where Id=? ";
+//	 
+//	        PreparedStatement pstm = conn.prepareStatement(sql);
+//	 
+//	        pstm.setString(1, department.getName());
+//	        pstm.setString(2, department.getStatus());
+//	        pstm.setString(3, department.getId());
+//	        pstm.executeUpdate();
+//	    }
+//	 
+//	    public static void insertDepartment(Connection conn, Examination department) throws SQLException {
+//	        String sql = "Insert into khoa( Name, Status) values (?,?)";
+//	 
+//	        PreparedStatement pstm = conn.prepareStatement(sql);
+//	 
+//	        pstm.setString(1, department.getName());
+//	        pstm.setString(2, department.getStatus());
+//	 
+//	        pstm.executeUpdate();
+//	    }
+//	 
+//	    public static void deleteExamination(Connection conn, String id) throws SQLException {
+//	        String sql = "Delete From khoa where Id= ?";
+//	 
+//	        PreparedStatement pstm = conn.prepareStatement(sql);
+//	 
+//	        pstm.setString(1, id);
+//	 
+//	        pstm.executeUpdate();
+//	    }
+//	 
+}

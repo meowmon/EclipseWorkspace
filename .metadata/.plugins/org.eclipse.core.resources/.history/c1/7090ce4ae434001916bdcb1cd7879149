@@ -1,0 +1,76 @@
+package bean;
+
+public class Examfile {
+	private int id;
+	private int userId;
+	private int examfileId;
+	private int examId;
+	private int mauId;
+	private int xquangId;
+	private int sieuamId;
+	private int tqId;
+	private String descrip;
+	private String conclude;
+	private int status;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public int getExamfileId() {
+		return examfileId;
+	}
+	public void setExamfileId(int examfileId) {
+		this.examfileId = examfileId;
+	}
+	public int getExamId() {
+		return examId;
+	}
+	public void setExamId(int examId) {
+		this.examId = examId;
+	}
+	public int getMauId() {
+		return mauId;
+	}
+	public void setMauId(int mauId) {
+		this.mauId = mauId;
+	}
+	public int getXquangId() {
+		return xquangId;
+	}
+	public void setXquangId(int xquangId) {
+		this.xquangId = xquangId;
+	}
+	public int getSieuamId() {
+		return sieuamId;
+	}
+	public void setSieuamId(int sieuamId) {
+		this.sieuamId = sieuamId;
+	}
+	public int getTqId() {
+		return tqId;
+	}
+	public void setTqId(int tqId) {
+		this.tqId = tqId;
+	}
+	public String getDescrip() {
+		return descrip;
+	}
+	public void setDescrip(String descrip) {
+		this.descrip = descrip;
+	}
+	public String getConclude() {
+		return conclude;
+	}
+	public void setConclude(String conclude) {
+		this.conclude = conclude;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
+}

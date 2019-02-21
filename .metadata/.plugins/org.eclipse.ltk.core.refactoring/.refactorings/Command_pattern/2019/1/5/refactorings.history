@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;Oder&apos; to &apos;Order&apos;&#x0D;&#x0A;- Original project: &apos;Command_pattern&apos;&#x0D;&#x0A;- Original element: &apos;Oder&apos;&#x0D;&#x0A;- Renamed element: &apos;Order&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Oder&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{Oder.java[Oder" matchStrategy="1" name="Order" qualified="false" references="true" similarDeclarations="false" stamp="1548732541962" textual="false" version="1.0"/>
+</session>
