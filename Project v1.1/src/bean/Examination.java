@@ -1,12 +1,13 @@
 package bean;
 
 public class Examination {
-	private String id;
+	private int id;
+	private String examId;
 	private String name;
 	private String date;
 	private String placce;
 	private String status;
-
+	
 	public Examination() {
 		// TODO Auto-generated constructor stub
 	}
@@ -14,10 +15,10 @@ public class Examination {
 	public Examination(String id2, String name2, String status2) {
 		// TODO Auto-generated constructor stub
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -43,6 +44,14 @@ public class Examination {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getExamId() {
+		return examId;
+	}
+
+	public void setExamId(String examId) {
+		this.examId = examId;
 	}
 	
 }

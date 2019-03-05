@@ -3,17 +3,18 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
- 
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
-import bean.Department;
-import utils.DepartmentDAO;
-import utils.MyUtils;
+import javax.servlet.http.HttpSession;
+
+import bean.*;
+import utils.*;
  
 /**
  * Servlet implementation class CreateProduct
@@ -35,6 +36,19 @@ public class CreateDepartment extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+
+		Connection conn = MyUtils.getStoredConnection(request);
+		String errorString=null;
+		List<Noti> noti = null;
+		 try {
+        	noti=NotiDAO.queryNoti(conn,"nvyt");
+        	HttpSession session = request.getSession();
+        	session.setAttribute("notic", NotiDAO.countNoti(conn, "nvyt"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            errorString = e.getMessage();
+        }
+		 request.setAttribute("noti", noti);
 		  RequestDispatcher dispatcher = request.getServletContext()
 	                .getRequestDispatcher("/WEB-INF/views/them-khoa.jsp");
 	        dispatcher.forward(request, response);
@@ -45,6 +59,7 @@ public class CreateDepartment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
 		Connection conn = MyUtils.getStoredConnection(request);
 		 
         String name = (String) request.getParameter("name");
@@ -79,6 +94,15 @@ public class CreateDepartment extends HttpServlet {
  
         // Nếu có lỗi forward (chuyển tiếp) sang trang 'edit'.
         if (errorString != null) {
+    		List<Noti> noti = null;
+    		 try {
+             	noti=NotiDAO.queryNoti(conn,"nvyt");
+             	HttpSession session = request.getSession();
+             	session.setAttribute("notic", NotiDAO.countNoti(conn, "nvyt"));
+             } catch (SQLException e) {
+                 e.printStackTrace();
+                 errorString = e.getMessage();
+             }
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/them-khoa.jsp");
             dispatcher.forward(request, response);

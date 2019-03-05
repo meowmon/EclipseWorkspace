@@ -9,22 +9,25 @@ import java.util.List;
 import bean.Subject;
 public class SubjectDAO {
 	 public static List<Subject> querySubject(Connection conn) throws SQLException {
-	        String sql = "Select a.Id, a.Name,a.idKhoa, a.Status from BoMon a ";
-	 
+	        String sql = "Select a.Id, a.Name,b.name, a.Status \r\n"+
+	        			"	FROM (bomon a INNER JOIN khoa b ON a.idKhoa = b.id) "							;
+	        int id = 0;
 	        PreparedStatement pstm = conn.prepareStatement(sql);
 	 
 	        ResultSet rs = pstm.executeQuery();
 	        List<Subject> list = new ArrayList<Subject>();
 	        while (rs.next()) {
-	            String id = rs.getString("Id");
+	        	id++;
+	            String subid = rs.getString("Id");
 	            String name = rs.getString("Name");
-	            String idKhoa = rs.getString("idKhoa");
+	            String khoa = rs.getString("b.name");
 	            String status = rs.getString("Status");
-	            System.out.println(id+name+idKhoa + status);
+	            System.out.println(id+name+khoa + status);
 	            Subject subject = new Subject();
 	            subject.setId(id);
+	            subject.setSubId(subid);
 	            subject.setName(name);
-	            subject.setIdKhoa(idKhoa);
+	            subject.setKhoa(khoa);
 	            subject.setStatus(status);
 	            list.add(subject);
 	        }
@@ -37,12 +40,12 @@ public class SubjectDAO {
 	        pstm.setString(1, id);
 	 
 	        ResultSet rs = pstm.executeQuery();
-	 
+	        int gid=0;
 	        while (rs.next()) {
 	            String name = rs.getString("Name");
 	            String idKhoa = rs.getString("idKhoa");
 	            String status = rs.getString("Status");
-	            Subject subject = new Subject(id, name, idKhoa, status);
+	            Subject subject = new Subject(gid, id, name, idKhoa, status);
 	            return subject;
 	        }
 	        return null;
@@ -56,7 +59,7 @@ public class SubjectDAO {
 	        pstm.setString(1, subject.getName());
 	        pstm.setString(2, subject.getStatus());
 	        pstm.setString(3, subject.getIdKhoa());
-	        pstm.setString(4, subject.getId());
+	        pstm.setString(4, subject.getSubId());
 	        pstm.executeUpdate();
 	    }
 	 

@@ -10,6 +10,7 @@ public class ExamDetail {
 	private int pressure;
 	private String pclass;
 	private String status;
+	private String idHoSo;
 	public int getLeftEye() {
 		return leftEye;
 	}
@@ -63,6 +64,12 @@ public class ExamDetail {
 	}
 	public void setBMI() {
 		BMI = (double)Math.round(((double)this.weight*10000)/((double)this.height*(double)this.height)*100)/100;
+	}
+	public String getIdHoSo() {
+		return idHoSo;
+	}
+	public void setIdHoSo(String idHoSo) {
+		this.idHoSo = idHoSo;
 	}
 	
 }

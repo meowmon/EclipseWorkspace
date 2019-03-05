@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="java.io.PrintWriter"/>
 <fullyQualifiedTypeName name="bean.UserAccount"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 <fullyQualifiedTypeName name="utils.MyUtils"/>
 <fullyQualifiedTypeName name="bean.Department"/>
 <fullyQualifiedTypeName name="utils.DepartmentDAO"/>
@@ -14,4 +13,6 @@
 <fullyQualifiedTypeName name="model.Bitcoin"/>
 <fullyQualifiedTypeName name="java.util.Scanner"/>
 <fullyQualifiedTypeName name="bean.ExamDetail"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
 </qualifiedTypeNameHistroy>

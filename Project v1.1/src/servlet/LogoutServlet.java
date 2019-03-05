@@ -31,6 +31,8 @@ public class LogoutServlet extends HttpServlet {
 //		 session.invalidate();
 		HttpSession session=request.getSession();  
         session.invalidate();
+        System.out.println("Logged out Suckshit");
+        response.sendRedirect(request.getContextPath()+"/Login");
 	}
 
 	/**

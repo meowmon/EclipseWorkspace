@@ -1,5 +1,7 @@
 package bean;
 
+import java.time.LocalDate;
+
 public class Examfile {
 	private int id;
 	private String userId;
@@ -13,6 +15,7 @@ public class Examfile {
 	private String descrip;
 	private String conclude;
 	private int status;
+	private String idKyKham;
 	private String date;
 	public int getId() {
 		return id;
@@ -93,6 +96,13 @@ public class Examfile {
 	public void setLydokham(String lydokham) {
 		this.lydokham = lydokham;
 	}
+	public String getIdKyKham() {
+		return idKyKham;
+	}
+	public void setIdKyKham(String idKyKham) {
+		this.idKyKham = idKyKham;
+	}
+
 	
 	
 	

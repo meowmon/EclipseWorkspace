@@ -1,6 +1,7 @@
 package bean;
 
 public class UserAccount {
+	private int id;
 	private String name;
 	private String password;
 	private String code;
@@ -9,9 +10,9 @@ public class UserAccount {
 	private String boMon;
 	private String status;
 	private String khoa;
+	private String idBomon;
 	private String role;
 	private String gender;
-	private String id;
 	public String getName() {
 		return name;
 	}
@@ -72,11 +73,17 @@ public class UserAccount {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public String getIdBomon() {
+		return idBomon;
+	}
+	public void setIdBomon(String idBomon) {
+		this.idBomon = idBomon;
 	}
 		
 

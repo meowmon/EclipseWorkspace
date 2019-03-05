@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>	
 <!DOCTYPE html>
 <html>
 
@@ -8,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>Collapsible sidebar using Bootstrap 4</title>
+	<link rel="shortcut icon" type="image/png" href="assets/img/LogoTLU.png"/>
+    <title>Yêu cầu khám</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -25,11 +27,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="assets/css/nucleo-icons.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="assets/css/demo.css" rel="stylesheet" />
+ 
 
 </head>
 
@@ -58,6 +56,51 @@
 
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto ">
+                             <!-- BAT DAU COPY NOTIFY TU DAY -->
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+                  <div id="ex4" class="inline">
+                  <strong style="color:white"><%=session.getAttribute("notic")  %></strong>
+                  <span class="p1 fa-stack has-badge" data-count="<%=session.getAttribute("notic")  %>">
+                    <div class="photo" id="ex4" data-count="4">
+                    <img src="assets/img/bell.png" data-count="4b">
+                  </div>
+                    
+                  </span>
+                </div>
+
+                  <div class="dropdown-menu dropdown-menu-right overflow-auto" style="min-width: 380px; max-height:400px; padding-top: 0 !important; padding-bottom: 0 !important; in;overflow-y: scroll; ">
+                  <div class="tile">
+                      <div class="tile-inner title text-black mb-3">
+                          <strong>Thông báo</strong>
+                      </div>
+                  </div>
+
+				<c:forEach items="${noti}" var="notify">
+				<a href="requestList?rnoti=read">
+                      <div class="tile mb-3">
+                        <div class="inline">
+                          <div class="noti">
+                              <div class="tile-inner font09 truncate ellipsis chrome ">
+                                  <span>${notify.content} </span>
+                              </div>
+                              <div class="tile-inner2 text-black font07">
+                                <span>${notify.date}</span>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+				</c:forEach>
+                      
+                      <a class="tile">
+                          <div class="tile-inner text-black text-center mb-1">
+                              <a href="#"><span>Show All</span></a>
+                          </div>
+                      </a>
+                  </div>
+                </li>
+                <!-- KET THUC PHAN NOTIFY -->
 
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -101,37 +144,34 @@
             <ul class="list-unstyled components">
                 <p class="head-title">Thăng Long University</p>
                 <li>
-                    <a href="trangchu.html">Trang chủ</a>
+                    <a href="${pageContext.request.contextPath}/departmentList">Quản lý Khoa</a>
+                </li>
+                 <li >
+                    <a href="${pageContext.request.contextPath}/subjectList">Quản lý Bộ Môn</a>
                 </li>
                 <li>
-                    <a href="khoa.html">Quản lý Khoa</a>
-                </li>
-                 <li>
-                    <a href="bomon.html">Quản lý Bộ Môn</a>
+                    <a href="${pageContext.request.contextPath}/userList">Quản lý Giáo viên</a>
                 </li>
                 <li>
-                    <a href="giaovien.html">Quản lý Giáo viên</a>
+                    <a href="${pageContext.request.contextPath}/examList">Quản lý Kỳ khám</a>
                 </li>
                 <li>
-                    <a href="kykham.html">Quản lý Kỳ khám</a>
+                    <a href="${pageContext.request.contextPath}/examfileList">Quản lý Hồ sơ khám bệnh</a>
                 </li>
                 <li>
-                    <a href="hoso.html">Quản lý Hồ sơ khám bệnh</a>
+                    <a href="${pageContext.request.contextPath}/diseaseTypeList">Quản lý Loại bệnh</a>
                 </li>
                 <li>
-                    <a href="loaibenh.html">Quản lý Loại bệnh</a>
+                    <a href="${pageContext.request.contextPath}/diseaseList">Quản lý Bệnh</a>
                 </li>
                 <li>
-                    <a href="benh.html">Quản lý Bệnh</a>
-                </li>
-                <li>
-                    <a href="sucosuckhoe.html">Quản lý Sự cố sức khỏe</a>
+                    <a href="${pageContext.request.contextPath}/problemList">Quản lý Sự cố sức khỏe</a>
                 </li>
                 <li class="active">
-                    <a href="giaoviencankham.html">Quản lý giáo viên cần khám</a>
+                    <a href="${pageContext.request.contextPath}/requestList">Quản lý giáo viên cần khám</a>
                 </li>
                 <li>
-                    <a href="thongke.html">Thống kê báo cáo</a>
+                    <a href="${pageContext.request.contextPath}/report">Thống kê báo cáo</a>
                 </li>
             </ul>
 
@@ -154,7 +194,7 @@
                 <div class="container-fluid">
 
                     <li class="nav-item list-item">
-                        <a href="them-giaoviencankham.html">
+                        <a href="createRequest">
                           <button type="button" id="sidebarCollapse" class="btn btn-success">
                                   <i class="fas fa fa-plus"></i>
                                   <span>Thêm Giáo viên cần khám</span>
@@ -236,123 +276,30 @@
                       <th scope="col">Họ và tên</th>
                       <th scope="col">Mã giáo viên</th>
                       <th scope="col">Số điện thoại</th>
-                      <th scope="col">Sự cố sức khỏe</th>
-                      <th scope="col">Mô tả</td>
+                      <th scope="col">Thời gian hẹn</th>
                       <th scope="col">Ngày hẹn</th>
                       <th scope="col">Trạng thái</th>
-                      <th scope="col">Sửa</th>
+                      <th scope="col">Thao tác</th>
                       <th scope="col">Xóa</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark Otto</td>
-                      <td>A121</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>23/8/2018</td>
-                      <td>Đang chờ</td>
-                      <td><a href="sua-giaoviencankham.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
+                    
+                    <c:forEach items="${requestList}" var="request">
+                    	<tr>
+                      <th scope="row">${request.id}</th>
+                      <td>${request.username }</td>
+                      <td>G${request.userId }</td>
+                      <td>${request.dial }</td>
+                      <td>${request.time }</td>
+                      <td>${request.date }</td>
+                      <td>${request.status }</td>
+                      <td><a href="setStatus?status=Chờ khám&id=${request.requestId}&uid=${request.userId}"><button class="btn btn-warning" type="button">Xác nhận</button></a> 
+                      <a href="setStatus?status=Yêu cầu đổi lịch&id=${request.requestId}&uid=${request.userId}"><button class="btn btn-info" type="button">Đổi lịch</button></a> 
+                      <a href="createExamfileId?id=${request.userId }&name=${request.username }&uid=${request.userId}"><button class="btn btn-success" type="button">Khám</button></a></td> <!-- button Sửa -->
+                      <td><a href="setStatus?status=Đã hủy&id=${request.requestId}"><button class="btn btn-danger" type="button">HỦY</button></a><!-- button Xóa -->
                     </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob Thornton</td>
-                      <td>A122</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>14/9/2018</td>
-                      <td>Đã khám</td>
-                      <td><a href="sua-giaoviencankham.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry the Bird</td>
-                      <td>A123</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>23/8/2018</td>
-                      <td>Đang chờ</td>
-                      <td><a href="sua-giaovien.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark Otto</td>
-                      <td>A121</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>23/8/2018</td>
-                      <td>Đang chờ</td>
-                      <td><a href="sua-giaoviencankham.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob Thornton</td>
-                      <td>A122</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>14/9/2018</td>
-                      <td>Đã khám</td>
-                      <td><a href="sua-giaoviencankham.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry the Bird</td>
-                      <td>A123</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>23/8/2018</td>
-                      <td>Đang chờ</td>
-                      <td><a href="sua-giaovien.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark Otto</td>
-                      <td>A121</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>23/8/2018</td>
-                      <td>Đang chờ</td>
-                      <td><a href="sua-giaoviencankham.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">2</th>
-                      <td>Jacob Thornton</td>
-                      <td>A122</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>14/9/2018</td>
-                      <td>Đã khám</td>
-                      <td><a href="sua-giaoviencankham.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
-                    <tr>
-                      <th scope="row">3</th>
-                      <td>Larry the Bird</td>
-                      <td>A123</td>
-                      <td>0123456789</td>
-                      <td>Sự cố sức khỏe 1</td>
-                      <td></td>
-                      <td>23/8/2018</td>
-                      <td>Đang chờ</td>
-                      <td><a href="sua-giaovien.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                      <td><a href="#"><i class="fas fa fa-times"></i></a></td> <!-- button Xóa -->
-                    </tr>
+                    </c:forEach>
                   </tbody>
                 </table>
             </div>
@@ -369,6 +316,7 @@
             </div>
         </div>
       </div>
+    </div>
     </div>
 
 
@@ -395,6 +343,20 @@
             });
         });
     </script>
+     <script src="assets/js/core/jquery.min.js"></script>
+    <script src="assets/js/core/popper.min.js"></script>
+    <script src="assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--  Google Maps Plugin    -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+    <!-- Chart JS -->
+    <script src="assets/js/plugins/chartjs.min.js"></script>
+    <!--  Notifications Plugin    -->
+
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+
+    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+    <script src="assets/demo/demo.js"></script>
+    
 </body>
 
 </html>

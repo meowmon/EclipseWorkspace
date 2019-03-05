@@ -13,7 +13,8 @@ public class ExamfileDAO {
 	        String sql = "Select a.id ,b.name ,a.idUser, c.name,a.day ,a.Descrip,a.Conclude,a.Status\r\n" + 
 	        		"	    	FROM ((hoso a \r\n" + 
 	        		"	    	INNER JOIN Users b ON a.idUser = b.id) \r\n" +
-	        		"			INNER JOIN Examination c on a.idKyKhamBenh = c.id)"		;
+	        		"			INNER JOIN Examination c on a.idKyKhamBenh = c.id)\r\n" +
+	        		"			ORDER BY a.id desc"		;
 	        PreparedStatement pstm = conn.prepareStatement(sql);
 	        int id=0;
 	        ResultSet rs = pstm.executeQuery();
@@ -149,6 +150,53 @@ public class ExamfileDAO {
 //	        pstm.executeUpdate();
 //	    }
 //	 
-
+	public static String insertExamfile(Connection conn, Examfile file)throws SQLException {
+		String sql = "Insert into hoso ( idUser, idKyKhamBenh, Day, Descrip, Conclude) values (?,?,?,?,?)";
+		 
+		        PreparedStatement pstm = conn.prepareStatement(sql);
+		 
+		        pstm.setString(1, file.getUserId());
+		        pstm.setString(2, file.getIdKyKham());
+		        pstm.setString(3, file.getDate());
+		        pstm.setString(4, file.getDescrip());
+		        pstm.setString(5, file.getConclude());
+		 
+		        pstm.executeUpdate();
+		 String out = null;
+		 sql = "Select max(id) as mid FROM hoso a";
+		 pstm = conn.prepareStatement(sql);
+		 ResultSet rs = pstm.executeQuery();
+		 while(rs.next()) {
+			 String id = rs.getString("mid");
+			 out = "0000"+id;
+		 }
+		 return out;
+	}
+	public static String insertExamDetail(Connection conn, ExamDetail detail)throws SQLException {
+			String sql = "Insert into KhamnoiTQ ( leftEye, rightEye, height, weight, beat, pressure, pclass, idHoso) values (?,?,?,?,?,?,?,?)";
+			String newid=null;
+	        PreparedStatement pstm = conn.prepareStatement(sql);
+	 
+	        pstm.setInt(1, detail.getLeftEye());
+	        pstm.setInt(2, detail.getRightEye());
+	        pstm.setInt(3, detail.getHeight());
+	        pstm.setInt(4, detail.getWeight());
+	        pstm.setInt(5, detail.getBeat());
+	        pstm.setInt(6, detail.getPressure());
+	        pstm.setString(7, detail.getPclass());
+	        pstm.setString(8, detail.getIdHoSo());
+	        
+	 
+	        pstm.executeUpdate();
+	        System.out.println("INSERT SUCKSHIT");
+	        sql = "SELECT MAX(id) as a FROM KhamnoiTQ ";
+	        pstm = conn.prepareStatement(sql);
+	        ResultSet rs = pstm.executeQuery();
+	        while(rs.next()) {
+	        	newid=rs.getString("a");
+	        }
+	        return newid;
+	}
+			
 	
 }

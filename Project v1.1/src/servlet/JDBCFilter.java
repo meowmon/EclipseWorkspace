@@ -61,7 +61,6 @@ public class JDBCFilter implements Filter {
         Collection<? extends ServletRegistration> values = servletRegistrations.values();
         for (ServletRegistration sr : values) {
             Collection<String> mappings = sr.getMappings();
-            System.out.println(urlPattern);
             if (mappings.contains(urlPattern)) {
                 return true;
             }

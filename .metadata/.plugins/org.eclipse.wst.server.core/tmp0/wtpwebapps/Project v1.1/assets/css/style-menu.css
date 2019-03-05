@@ -347,6 +347,11 @@ a[aria-expanded="true"] {
     font-size: 1.1em;
     border-left: 3px solid #322348;
 }
+#navigation ul li.active>a,
+a[aria-expanded="true"] {
+    font-size: 1em;
+    border-left: none;
+}
 
 a[data-toggle="collapse"] {
     position: relative;

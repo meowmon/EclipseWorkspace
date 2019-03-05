@@ -1,26 +1,35 @@
 package bean;	
 
 public class Subject {
-	private String id;
+	private int id;
 	private String name;
+	private String subId;
 	private String idKhoa;
+	private String khoa;
 	private String status;
 	public Subject() {
 		
 	}
 	
-	public Subject(String id, String name, String idKhoa, String status) {
+	public Subject(int gid, String id, String idKhoa, String status, String status2) {
 		super();
-		this.id = id;
+		this.id = gid;
+		this.subId = id;
 		this.name = name;
 		this.idKhoa = idKhoa;
 		setStatus(status); 
 	}
 
-	public String getId() {
+	public Subject(String name, String depId, String status) {
+		this.name = name;
+		this.idKhoa = depId;
+		this.status = status;
+	}
+
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -44,5 +53,21 @@ public class Subject {
 //			this.status = "Bình thường";
 //		else
 //			this.status = "Không hoạt động";
+	}
+
+	public String getSubId() {
+		return subId;
+	}
+
+	public void setSubId(String subId) {
+		this.subId = subId;
+	}
+
+	public String getKhoa() {
+		return khoa;
+	}
+
+	public void setKhoa(String khoa) {
+		this.khoa = khoa;
 	}
 }

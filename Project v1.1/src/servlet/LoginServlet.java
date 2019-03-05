@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
  
@@ -47,7 +46,6 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/html;charset=UTF-8");
 		request.setCharacterEncoding("utf-8");
 		String username = request.getParameter("username");
@@ -99,8 +97,9 @@ public class LoginServlet extends HttpServlet {
         // Và chuyển hướng sang trang userInfo.
         else {
             HttpSession session = request.getSession();
+           
             MyUtils.storeLoginedUser(session, user);
- 
+            session.setAttribute("userid", user.getCode());
 //            // Nếu người dùng chọn tính năng "Remember me".
 //            if (remember) {
 //                MyUtils.storeUserCookie(response, user);
@@ -111,8 +110,14 @@ public class LoginServlet extends HttpServlet {
 //            }
  
             // Redirect (Chuyển hướng) sang trang /userInfo.
-            System.out.println(request.getContextPath());
-            response.sendRedirect(request.getContextPath()+"/departmentList");
+            System.out.println(user.getRole());
+            if(user.getRole().equals("0")||user.getRole().equals("1"))
+            response.sendRedirect(request.getContextPath()+"/requestList");
+            else if(user.getRole().equals("3"))
+            response.sendRedirect(request.getContextPath()+"/createUserRequest");
+            else 
+            response.sendRedirect(request.getContextPath()+"/Error");
+            
         }
     }
 

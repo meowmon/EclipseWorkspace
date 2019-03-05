@@ -3,17 +3,21 @@ package servlet;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
- 
+import java.util.List;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+import javax.servlet.http.HttpSession;
+
 import bean.Department;
+import bean.Noti;
 import utils.DepartmentDAO;
 import utils.MyUtils;
+import utils.NotiDAO;
 /**
  * Servlet implementation class editDepartment
  */
@@ -41,6 +45,16 @@ public class EditDepartment extends HttpServlet {
         Department department = null;
  
         String errorString = null;
+        List<Noti> noti = null;
+		 try {
+       	noti=NotiDAO.queryNoti(conn,"nvyt");
+       	HttpSession session = request.getSession();
+       	session.setAttribute("notic", NotiDAO.countNoti(conn, "nvyt"));
+       } catch (SQLException e) {
+           e.printStackTrace();
+           errorString = e.getMessage();
+       }
+		 request.setAttribute("noti", noti);
  
         try {
         	department = DepartmentDAO.findDepartment(conn, id);
@@ -93,6 +107,16 @@ public class EditDepartment extends HttpServlet {
  
         // Nếu có lỗi forward sang trang edit.
         if (errorString != null) {
+        	List<Noti> noti = null;
+   		 try {
+           	noti=NotiDAO.queryNoti(conn,"nvyt");
+           	HttpSession session = request.getSession();
+           	session.setAttribute("notic", NotiDAO.countNoti(conn, "nvyt"));
+           } catch (SQLException e) {
+               e.printStackTrace();
+               errorString = e.getMessage();
+           }
+   		 request.setAttribute("noti", noti);
             RequestDispatcher dispatcher = request.getServletContext()
                     .getRequestDispatcher("/WEB-INF/views/sua-khoa.jsp");
             dispatcher.forward(request, response);

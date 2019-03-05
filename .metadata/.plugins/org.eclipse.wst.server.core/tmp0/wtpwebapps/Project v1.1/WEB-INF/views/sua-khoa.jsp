@@ -60,6 +60,51 @@
 
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto ">
+            <!-- BAT DAU COPY NOTIFY TU DAY -->
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+                  <div id="ex4" class="inline">
+                  <strong style="color:white"><%=session.getAttribute("notic")  %></strong>
+                  <span class="p1 fa-stack has-badge" data-count="<%=session.getAttribute("notic")  %>">
+                    <div class="photo" id="ex4" data-count="4">
+                    <img src="assets/img/bell.png" data-count="4b">
+                  </div>
+                    
+                  </span>
+                </div>
+
+                  <div class="dropdown-menu dropdown-menu-right overflow-auto" style="min-width: 380px; max-height:400px; padding-top: 0 !important; padding-bottom: 0 !important; in;overflow-y: scroll; ">
+                  <div class="tile">
+                      <div class="tile-inner title text-black mb-3">
+                          <strong>Thông báo</strong>
+                      </div>
+                  </div>
+
+				<c:forEach items="${noti}" var="notify">
+				<a href="requestList?rnoti=read">
+                      <div class="tile mb-3">
+                        <div class="inline">
+                          <div class="noti">
+                              <div class="tile-inner font09 truncate ellipsis chrome ">
+                                  <span>${notify.content} </span>
+                              </div>
+                              <div class="tile-inner2 text-black font07">
+                                <span>${notify.date}</span>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+				</c:forEach>
+                      
+                      <a class="tile">
+                          <div class="tile-inner text-black text-center mb-1">
+                              <a href="#"><span>Show All</span></a>
+                          </div>
+                      </a>
+                  </div>
+                </li>
+                <!-- KET THUC PHAN NOTIFY -->
 
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -102,38 +147,35 @@
 
             <ul class="list-unstyled components">
                 <p class="head-title">Thăng Long University</p>
-                <li class="">
-                    <a href="trangchu.html">Trang chủ</a>
-                </li>
-                <li class="active">
+                <li>
                     <a href="${pageContext.request.contextPath}/departmentList">Quản lý Khoa</a>
                 </li>
                  <li class="">
-                    <a href="bomon.html">Quản lý Bộ Môn</a>
+                    <a href="${pageContext.request.contextPath}/subjectList">Quản lý Bộ Môn</a>
                 </li>
                 <li>
-                    <a href="giaovien.html">Quản lý Giáo viên</a>
+                    <a href="${pageContext.request.contextPath}/userList">Quản lý Giáo viên</a>
                 </li>
                 <li>
-                    <a href="kykham.html">Quản lý Kỳ khám</a>
+                    <a href="${pageContext.request.contextPath}/examList">Quản lý Kỳ khám</a>
                 </li>
                 <li>
-                    <a href="hoso.html">Quản lý Hồ sơ khám bệnh</a>
+                    <a href="${pageContext.request.contextPath}/examfileList">Quản lý Hồ sơ khám bệnh</a>
                 </li>
                 <li>
-                    <a href="loaibenh.html">Quản lý Loại bệnh</a>
+                    <a href="${pageContext.request.contextPath}/diseaseTypeList">Quản lý Loại bệnh</a>
                 </li>
                 <li>
-                    <a href="benh.html">Quản lý Bệnh</a>
+                    <a href="${pageContext.request.contextPath}/diseaseList">Quản lý Bệnh</a>
                 </li>
                 <li>
-                    <a href="sucosuckhoe.html">Quản lý Sự cố sức khỏe</a>
+                    <a href="${pageContext.request.contextPath}/problemList">Quản lý Sự cố sức khỏe</a>
                 </li>
                 <li>
-                    <a href="giaoviencankham.html">Quản lý giáo viên cần khám</a>
+                    <a href="${pageContext.request.contextPath}/requestList">Quản lý giáo viên cần khám</a>
                 </li>
                 <li>
-                    <a href="thongke.html">Thống kê báo cáo</a>
+                    <a href="${pageContext.request.contextPath}/report">Thống kê báo cáo</a>
                 </li>
             </ul>
 

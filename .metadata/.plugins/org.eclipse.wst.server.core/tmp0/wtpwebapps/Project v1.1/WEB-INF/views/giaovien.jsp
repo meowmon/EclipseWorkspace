@@ -59,6 +59,51 @@
 
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto ">
+            <!-- BAT DAU COPY NOTIFY TU DAY -->
+              <li class="dropdown nav-item">
+                <a href="#" class="dropdown nav-link" data-toggle="dropdown">
+                  <div id="ex4" class="inline">
+                  <strong style="color:white"><%=session.getAttribute("notic")  %></strong>
+                  <span class="p1 fa-stack has-badge" data-count="<%=session.getAttribute("notic")  %>">
+                    <div class="photo" id="ex4" data-count="<%=session.getAttribute("notic")  %>">
+                    <img src="assets/img/bell.png" data-count="4b">
+                  </div>
+                    
+                  </span>
+                </div>
+
+                  <div class="dropdown-menu dropdown-menu-right overflow-auto" style="min-width: 380px; max-height:400px; padding-top: 0 !important; padding-bottom: 0 !important; in;overflow-y: scroll; ">
+                  <div class="tile">
+                      <div class="tile-inner title text-black mb-3">
+                          <strong>Thông báo</strong>
+                      </div>
+                  </div>
+
+				<c:forEach items="${noti}" var="notify">
+				<a href="requestList?rnoti=read">
+                      <div class="tile mb-3">
+                        <div class="inline">
+                          <div class="noti">
+                              <div class="tile-inner font09 truncate ellipsis chrome ">
+                                  <span>${notify.content} </span>
+                              </div>
+                              <div class="tile-inner2 text-black font07">
+                                <span>${notify.date}</span>
+                              </div>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+				</c:forEach>
+                      
+                      <a class="tile">
+                          <div class="tile-inner text-black text-center mb-1">
+                              <a href="#"><span>Show All</span></a>
+                          </div>
+                      </a>
+                  </div>
+                </li>
+                <!-- KET THUC PHAN NOTIFY -->
 
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -79,7 +124,7 @@
                   </li>
                   <div class="dropdown-divider"></div>
                   <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Log out</a>
+                    <a href="Logout" class="nav-item dropdown-item">Log out</a>
                   </li>
                 </ul>
               </li>
@@ -155,7 +200,7 @@
                 <div class="container-fluid">
                     
                     <li class="nav-item list-item">
-                        <a href="them-giaovien.html">
+                        <a href="createUser">
                           <button type="button" id="sidebarCollapse" class="btn btn-success">
                                   <i class="fas fa fa-plus"></i>
                                   <span>Thêm giáo viên</span>
@@ -236,7 +281,7 @@
                     <c:forEach items="${usersList}" var="user" >
                       <tr>
                         <td>${user.name}</td>
-                        <td>${user.code}</td>
+                        <td>G${user.code}</td>
                         <td>${user.dateOfBirth}</td>
                         <td>${user.boMon}</td>
                         <td>${user.khoa}</td>
@@ -248,19 +293,6 @@
                       </tr>
                       </c:forEach>
               
-                    <tr>
-                        <td>Larry the Bird</td>
-                        <td>A123</td>
-                        <td>1/3/1983</td>
-                        <td>Kinh tế - Quản lý</td>
-                        <td>Quản trị du lịch</td>
-                        <td>Bình thường</td>
-                        <td><a class="info" href="giaovien-chitiet.html"><i  id="button" class="fas fa fa-address-card"></i></a></td> <!--button Hồ sơ giáo viên-->
-                        <td><a class="kham" href="hosokham-chitiet.html"><i class="fas fa fa-plus-square"></i></a></td> <!-- button Hồ sơ khám-->
-                        <td><a href="sua-giaovien.html"><i class="fas fa fa-edit"></i></a></td> <!-- button Sửa -->
-                        <td><a href="#"><i class="fas fa fa-trash"></i></a></td> <!-- button Xóa -->
-                    </tr>
-
                   </tbody>
                 </table>
             </div>

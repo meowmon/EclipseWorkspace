@@ -11,10 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
- 
+import javax.servlet.http.HttpSession;
+
 import bean.DiseaseType;
+import bean.Noti;
 import utils.DiseaseTypeDAO;
 import utils.MyUtils;
+import utils.NotiDAO;
 /**
  * Servlet implementation class DepartmentServlet
  */
@@ -40,6 +43,16 @@ public class DiseaseTypeServlet extends HttpServlet {
 		Connection conn = MyUtils.getStoredConnection(request);
 		 
         String errorString = null;
+        List<Noti> noti = null;
+		 try {
+       	noti=NotiDAO.queryNoti(conn,"nvyt");
+       	HttpSession session = request.getSession();
+       	session.setAttribute("notic", NotiDAO.countNoti(conn, "nvyt"));
+       } catch (SQLException e) {
+           e.printStackTrace();
+           errorString = e.getMessage();
+       }
+		 request.setAttribute("noti", noti);
         List<DiseaseType> list = null;
         try {
             list = DiseaseTypeDAO.queryDiseaseType(conn);

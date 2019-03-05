@@ -10,13 +10,14 @@ import bean.Examination;
 public class ExamDAO {
 	 public static List<Examination> queryExamination(Connection conn) throws SQLException {
 	        String sql = "Select a.Id, a.Name, a.day, a.place, a.Status from examination a ";
-	 
+	        int id = 0;
 	        PreparedStatement pstm = conn.prepareStatement(sql);
 	 
 	        ResultSet rs = pstm.executeQuery();
 	        List<Examination> list = new ArrayList<Examination>();
 	        while (rs.next()) {
-	            String id = rs.getString("Id");
+	        	id++;
+	            String eid = rs.getString("Id");
 	            String name = rs.getString("Name");
 	            String day = rs.getString("day");
 	            String place = rs.getString("place");
@@ -24,6 +25,7 @@ public class ExamDAO {
 	            System.out.println(id+name+status);
 	            Examination exam = new Examination();
 	            exam.setId(id);
+	            exam.setExamId(eid);
 	            exam.setName(name);
 	            exam.setDate(day);
 	            exam.setPlacce(place);
